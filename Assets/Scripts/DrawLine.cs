@@ -157,7 +157,6 @@ public class DrawLine : MonoBehaviour
 
         // If all circles match and the number of hit circles is equal to required
         if (patternMatched && counter == pattern.Length)
-            // TODO Fire a mistle at enemy 
-            Debug.Log("You did it");
+            GetComponent<Shoot>().ShootBullet();
     }
 }
