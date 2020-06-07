@@ -21,6 +21,9 @@ public class EnemyBehaviour : MonoBehaviour
         // When a bullet hit the enemy destroy the bullet
         if (collision.gameObject.name != "Player" && collision.gameObject.tag != "Enemy")
         {
+            // Play audio from one of the circles (after being destroyed the audio won't play from enemy nor bullet)
+            GameObject.Find("5").GetComponent<AudioSource>().Play();
+
             // If the bullet is the colour of the enemy destroy enemy
             if (gameObject.name.Contains(collision.gameObject.tag))
                 Destroy(gameObject);
