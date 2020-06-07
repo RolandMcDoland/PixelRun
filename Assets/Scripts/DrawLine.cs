@@ -15,7 +15,9 @@ public class DrawLine : MonoBehaviour
     private bool firstCircle;
     private List<string> visitedCircles;
 
-    public string[] pattern;
+    public string[,] pattern;
+
+    public GameObject[] bulletPrefabs;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,8 @@ public class DrawLine : MonoBehaviour
         permanentLines = new List<GameObject>();
 
         visitedCircles = new List<string>();
+
+        pattern = new string[2, 7] { { "7", "4", "1", "5", "3", "6", "9" }, { "1", "2", "3", "5", "7", "8", "9" } };
     }
 
     // Update is called once per frame
@@ -143,20 +147,35 @@ public class DrawLine : MonoBehaviour
         int counter = 0;
         bool patternMatched = true;
 
-        foreach (string circle in visitedCircles)
+        int hitIndex = 0;
+
+        for (int i = 0; i < 2; i++) 
         {
-            // If there are too many visited circles or the order is incorrect break
-            if (counter >= pattern.Length || circle != pattern[counter])
+            foreach (string circle in visitedCircles)
             {
-                patternMatched = false;
+                // If there are too many visited circles or the order is incorrect break
+                if (counter >= pattern.GetLength(1) || circle != pattern[i, counter])
+                {
+                    patternMatched = false;
+                    break;
+                }
+
+                counter++;
+            }
+
+            // If the pattern is matchet save the index of pattern hit and break
+            if (patternMatched)
+            {
+                hitIndex = i;
                 break;
             }
 
-            counter++;
+            counter = 0;
+            patternMatched = true;
         }
 
-        // If all circles match and the number of hit circles is equal to required
-        if (patternMatched && counter == pattern.Length)
-            GetComponent<Shoot>().ShootBullet();
+        // If all circles match and the number of hit circles is equal to required shoot proper bullet
+        if (patternMatched && counter == pattern.GetLength(1))
+            GetComponent<Shoot>().ShootBullet(bulletPrefabs[hitIndex]);
     }
 }

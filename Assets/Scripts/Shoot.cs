@@ -5,12 +5,11 @@ using UnityEngine;
 public class Shoot : MonoBehaviour
 {
     public Transform firePoint;
-    public GameObject bulletPrefab;
 
     public float bulletForce = 20f;
 
     // Fires bullet in the direction of the enemy
-    public void ShootBullet()
+    public void ShootBullet(GameObject bulletPrefab)
     {
         // Reset player position (necessary due to recoil)
         transform.position = new Vector3(-9.5f, -3.0f, 0.0f);
