@@ -18,10 +18,13 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // When a bullet hit the enemy destroy both
+        // When a bullet hit the enemy destroy the bullet
         if (collision.gameObject.name != "Player" && collision.gameObject.tag != "Enemy")
         {
-            Destroy(gameObject);
+            // If the bullet is the colour of the enemy destroy enemy
+            if (gameObject.name.Contains(collision.gameObject.tag))
+                Destroy(gameObject);
+
             Destroy(collision.gameObject);
         }
         // When its the player stop moving

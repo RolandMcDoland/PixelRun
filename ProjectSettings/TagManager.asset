@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Circle
   - Enemy
+  - Red
+  - Green
   layers:
   - Default
   - TransparentFX

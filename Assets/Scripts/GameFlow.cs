@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameFlow : MonoBehaviour
 {
-    public GameObject enemyPrefab;
+    public GameObject[] enemyPrefabs;
 
     public float timeBetweenEnemySpawns = 10.0f;
     private float timerBetweenEnemySpawns;
@@ -15,7 +15,7 @@ public class GameFlow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(enemyPrefab, new Vector3(12f, -3f, 0f), Quaternion.identity);
+        instantiateRandomEnemy();
 
         timerBetweenEnemySpawns = timeBetweenEnemySpawns;
     }
@@ -27,7 +27,7 @@ public class GameFlow : MonoBehaviour
         timerBetweenEnemySpawns -= Time.deltaTime;
         if (timerBetweenEnemySpawns < 0)
         {
-            GameObject enemy = Instantiate(enemyPrefab, new Vector3(12f, -3f, 0f), Quaternion.identity);
+            GameObject enemy = instantiateRandomEnemy();
 
             // Check if enough enemies have been killed to up the difficulty
             enemyCounter++;
@@ -47,5 +47,13 @@ public class GameFlow : MonoBehaviour
 
             timerBetweenEnemySpawns = timeBetweenEnemySpawns;
         }
+    }
+
+    // Chooses a random enemy and spawns it
+    GameObject instantiateRandomEnemy()
+    {
+        int index = Random.Range(0, 2);
+
+        return Instantiate(enemyPrefabs[index], new Vector3(12f, -3f, 0f), Quaternion.identity);
     }
 }
