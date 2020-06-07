@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    public float speed = 0.01f;
+    public float speed = 0.02f;
     public float attackSpeed = 0.001f;
 
     // Update is called once per frame
@@ -19,7 +19,7 @@ public class EnemyBehaviour : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // When a bullet hit the enemy destroy both
-        if (collision.gameObject.name != "Player")
+        if (collision.gameObject.name != "Player" && collision.gameObject.tag != "Enemy")
         {
             Destroy(gameObject);
             Destroy(collision.gameObject);

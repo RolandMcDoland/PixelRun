@@ -1132,7 +1132,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 8139394232072398162, guid: 08339ce3fa2fb5b4eb61d516e2d3c98a,
     type: 3}
-  numberOfEnemies: 1
+  timeBetweenEnemySpawns: 10
+  enemiesToKill: 2
 --- !u!50 &1544642435
 Rigidbody2D:
   serializedVersion: 4

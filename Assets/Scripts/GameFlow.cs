@@ -6,15 +6,46 @@ public class GameFlow : MonoBehaviour
 {
     public GameObject enemyPrefab;
 
-    public int numberOfEnemies = 1;
+    public float timeBetweenEnemySpawns = 10.0f;
+    private float timerBetweenEnemySpawns;
+
+    public int enemiesToKill = 1;
+    private int enemyCounter = 0;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        Instantiate(enemyPrefab, new Vector3(12f, -3f, 0f), Quaternion.identity);
+
+        timerBetweenEnemySpawns = timeBetweenEnemySpawns;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        // Check if there are enough enemies and spawn new ones if not
-        if (GameObject.FindGameObjectsWithTag("Enemy").Length < numberOfEnemies)
+        // Check if the time between enemy spawns is up and spawn new ones if not
+        timerBetweenEnemySpawns -= Time.deltaTime;
+        if (timerBetweenEnemySpawns < 0)
         {
-            Instantiate(enemyPrefab, new Vector3(12f, -3f, 0f), Quaternion.identity);
+            GameObject enemy = Instantiate(enemyPrefab, new Vector3(12f, -3f, 0f), Quaternion.identity);
+
+            // Check if enough enemies have been killed to up the difficulty
+            enemyCounter++;
+            if (enemyCounter == enemiesToKill)
+            {
+                // Reduce time between spawns until you reach minimum then up the enemy's speed
+                if (timeBetweenEnemySpawns > 5.0f)
+                {
+                    timeBetweenEnemySpawns -= 1.0f;
+                    enemiesToKill *= 2;
+                }
+                else
+                {
+                    enemy.GetComponent<EnemyBehaviour>().speed += 0.01f;
+                }
+            }
+
+            timerBetweenEnemySpawns = timeBetweenEnemySpawns;
         }
     }
 }
