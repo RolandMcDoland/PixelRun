@@ -67,7 +67,26 @@ public class TakeDamage : MonoBehaviour
 
                 ui.SetActive(false);
                 endScreen.SetActive(true);
+
+                StopGame();
             }
+        }
+    }
+
+    private void StopGame()
+    {
+        gameObject.GetComponent<DrawLine>().enabled = false;
+        gameObject.GetComponent<GameFlow>().enabled = false;
+
+        var enemies = GameObject.FindGameObjectsWithTag("WeakEnemy");
+        foreach (var e in enemies)
+        {
+            e.GetComponent<EnemyBehaviour>().enabled = false;
+        }
+        var enemies2 = GameObject.FindGameObjectsWithTag("StrongEnemy");
+        foreach (var e in enemies2)
+        {
+            e.GetComponent<EnemyBehaviour>().enabled = false;
         }
     }
 
