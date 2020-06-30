@@ -1,11 +1,26 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
     public float speed = 0.02f;
     public float attackSpeed = 0.001f;
+    private TextMeshProUGUI score;
+
+    void Start()
+    {
+        var obj = GameObject.FindObjectsOfType<TextMeshProUGUI>();
+        foreach (var o in obj)
+        {
+            if (o.name.Equals("Score"))
+            {
+                score = o;
+            }
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -16,7 +31,7 @@ public class EnemyBehaviour : MonoBehaviour
         transform.position = newPosition;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         // When a bullet hit the enemy destroy the bullet
         if (collision.gameObject.name != "Player" && collision.gameObject.tag != "Enemy")
@@ -26,7 +41,15 @@ public class EnemyBehaviour : MonoBehaviour
 
             // If the bullet is the colour of the enemy destroy enemy
             if (gameObject.name.Contains(collision.gameObject.tag))
+            {
                 Destroy(gameObject);
+                var s = Convert.ToInt32(score.text);
+                if (gameObject.tag.Equals("StrongEnemy"))
+                    s += 20;
+                else
+                    s += 10;
+                score.text = s.ToString();
+            }
 
             Destroy(collision.gameObject);
         }

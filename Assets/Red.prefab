@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -3990970870891164833}
   m_Layer: 0
   m_Name: Red
-  m_TagString: Enemy
+  m_TagString: StrongEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,6 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.02
   attackSpeed: 0.001
+  score: {fileID: 6729094395305595162, guid: a7290407593b6c3418ea53fbdde7f0a4, type: 3}
 --- !u!50 &-2662872827294365439
 Rigidbody2D:
   serializedVersion: 4

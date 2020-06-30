@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Red
   - Green
+  - WeakEnemy
+  - StrongEnemy
   layers:
   - Default
   - TransparentFX
