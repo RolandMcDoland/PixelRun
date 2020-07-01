@@ -18,6 +18,7 @@ public class DrawLine : MonoBehaviour
     public string[,] pattern;
 
     public GameObject[] bulletPrefabs;
+    public Material lineMat;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,8 @@ public class DrawLine : MonoBehaviour
         visitedCircles = new List<string>();
 
         pattern = new string[2, 7] { { "7", "4", "1", "5", "3", "6", "9" }, { "1", "2", "3", "5", "7", "8", "9" } };
+
+        Input.simulateMouseWithTouches = true;
     }
 
     // Update is called once per frame
@@ -37,7 +40,7 @@ public class DrawLine : MonoBehaviour
     {
         if (Input.touchCount > 0)
         {
-            Touch touch = Input.GetTouch(0);
+            Touch touch = Input.touches[0];
 
             // At the begining of touch set the point as the start of the line and check if circle wasn't hit
             if (touch.phase == TouchPhase.Began)
@@ -81,7 +84,8 @@ public class DrawLine : MonoBehaviour
         myLine.transform.position = start;
         myLine.AddComponent<LineRenderer>();
         LineRenderer lr = myLine.GetComponent<LineRenderer>();
-        lr.material = new Material(Shader.Find("Unlit/Texture"));
+        //lr.material = new Material(Shader.Find("Unlit/Texture"));
+        lr.material = lineMat;
         lr.SetColors(color, color);
         lr.SetWidth(0.1f, 0.1f);
         lr.SetPosition(0, start);
@@ -99,7 +103,8 @@ public class DrawLine : MonoBehaviour
         myLine.transform.position = start;
         myLine.AddComponent<LineRenderer>();
         LineRenderer lr = myLine.GetComponent<LineRenderer>();
-        lr.material = new Material(Shader.Find("Unlit/Texture"));
+        //lr.material = new Material(Shader.Find("Unlit/Texture"));
+        lr.material = lineMat;
         lr.SetColors(color, color);
         lr.SetWidth(0.1f, 0.1f);
         lr.SetPosition(0, start);

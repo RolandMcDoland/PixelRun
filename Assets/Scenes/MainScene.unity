@@ -311,7 +311,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 606ce30885105e849ad5eada71947549, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2011,6 +2011,7 @@ MonoBehaviour:
   bulletPrefabs:
   - {fileID: 2405754234958207197, guid: ee705475dd0d8e14da6ee28089a9b336, type: 3}
   - {fileID: 2405754234958207197, guid: b31a13244bdc1a049b14ae78b1ece72e, type: 3}
+  lineMat: {fileID: 2100000, guid: 606ce30885105e849ad5eada71947549, type: 2}
 --- !u!212 &1544642432
 SpriteRenderer:
   m_ObjectHideFlags: 0
