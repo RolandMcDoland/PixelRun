@@ -54,6 +54,6 @@ public class GameFlow : MonoBehaviour
     {
         int index = Random.Range(0, 2);
 
-        return Instantiate(enemyPrefabs[index], new Vector3(12f, -3f, 0f), Quaternion.identity);
+        return Instantiate(enemyPrefabs[index], new Vector3(12f, -3.6f, 0f), Quaternion.identity);
     }
 }
