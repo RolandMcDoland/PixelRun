@@ -52,7 +52,9 @@ public class TakeDamage : MonoBehaviour
 
             }
 
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<Animator>().SetTrigger("Attack");
+
+            //Destroy(collision.gameObject);
 
             if (health <= 0)
             {
