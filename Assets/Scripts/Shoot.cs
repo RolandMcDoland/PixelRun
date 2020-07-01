@@ -24,11 +24,11 @@ public class Shoot : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         // Reset player position (necessary due to recoil)
-        transform.position = new Vector3(-9.5f, -3.6f, 0.0f);
+        transform.position = new Vector3(-8.75f, -3.6f, 0.0f);
 
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
+        rb.AddForce(firePoint.right * bulletForce, ForceMode2D.Impulse);
         bullet.GetComponent<AudioSource>().Play();
     }
 }
