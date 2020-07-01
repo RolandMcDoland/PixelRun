@@ -52,6 +52,7 @@ public class TakeDamage : MonoBehaviour
 
             }
 
+            collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
             collision.gameObject.GetComponent<Animator>().SetTrigger("Attack");
 
             //Destroy(collision.gameObject);

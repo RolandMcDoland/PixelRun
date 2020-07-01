@@ -42,16 +42,25 @@ public class EnemyBehaviour : MonoBehaviour
             // If the bullet is the colour of the enemy destroy enemy
             if (gameObject.name.Contains(collision.gameObject.tag))
             {
-                Destroy(gameObject);
+                //Destroy(gameObject);
                 var s = Convert.ToInt32(score.text);
                 if (gameObject.tag.Equals("StrongEnemy"))
                     s += 20;
                 else
                     s += 10;
                 score.text = s.ToString();
+
+                speed = 0f;
+                gameObject.GetComponent<Animator>().SetTrigger("Death");
+                Destroy(collision.gameObject);
+            }
+            else
+            {
+                collision.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+                collision.gameObject.GetComponent<Animator>().SetTrigger("Wrong");
             }
 
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
         }
         // When its the player stop moving
         else
